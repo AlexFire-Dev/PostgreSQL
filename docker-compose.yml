@@ -13,6 +13,9 @@ services:
 
   adminer:
     image: adminer:latest
+    environment:
+      - ADMINER_DESIGN=lucas-sandery
+      - ADMINER_PLUGINS='database-hide dump-alter dump-date dump-json dump-zip edit-calendar edit-foreign edit-textarea json-column login-servers pretty-json-column tables-filter'
     env_file:
       - adminer.env
     restart: unless-stopped
