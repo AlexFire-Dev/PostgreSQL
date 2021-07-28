@@ -13,8 +13,9 @@ services:
 
   adminer:
     image: adminer:latest
+    volumes:
+      - ./hydra.css:/var/www/html/adminer.css
     environment:
-      - ADMINER_DESIGN=hydra @ afcef61
       - ADMINER_PLUGINS=dump-alter dump-date dump-json dump-zip edit-foreign edit-textarea json-column tables-filter
     restart: unless-stopped
     ports:
