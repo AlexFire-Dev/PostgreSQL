@@ -7,9 +7,11 @@ services:
       - postgres-data:/var/lib/postgresql/data/
     env_file:
       - conf.env
-    restart: unless-stopped
     ports:
       - 5432:5432
+    networks:
+      - defaulf
+    restart: unless-stopped
 
   adminer:
     image: adminer:latest
@@ -17,9 +19,15 @@ services:
       - ./hydra.css:/var/www/html/adminer.css
     environment:
       - ADMINER_PLUGINS=dump-alter dump-date dump-json dump-zip edit-foreign edit-textarea json-column tables-filter
-    restart: unless-stopped
     ports:
       - 8080:8080
+    networks:
+      - defaulf
+    restart: unless-stopped
 
 volumes:
   postgres-data:
+
+networks:
+  defaulf:
+    driver: bridge
