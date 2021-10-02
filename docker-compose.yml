@@ -8,25 +8,28 @@ services:
     env_file:
       - conf.env
     ports:
-      - 5432:5432
+      - '5432:5432'
     networks:
       - defaulf
     restart: unless-stopped
 
-  adminer:
-    image: adminer:latest
+  pgadmin:
+    image: dpage/pgadmin4:latest
     volumes:
-      - ./hydra.css:/var/www/html/adminer.css
+      - pgadmin-data:/var/lib/pgadmin
     environment:
-      - ADMINER_PLUGINS=dump-alter dump-date dump-json dump-zip edit-foreign edit-textarea json-column tables-filter
+      - PGADMIN_DISABLE_POSTFIX=True
+    env_file:
+      - conf.env
     ports:
-      - 8080:8080
+      - '8080:80'
     networks:
       - defaulf
     restart: unless-stopped
 
 volumes:
   postgres-data:
+  pgadmin-data:
 
 networks:
   defaulf:
