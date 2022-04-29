@@ -14,7 +14,7 @@ services:
     restart: unless-stopped
 
   pgadmin:
-    image: dpage/pgadmin4:6.5
+    image: dpage/pgadmin4:latest
     volumes:
       - pgadmin-data:/var/lib/pgadmin
     environment:
